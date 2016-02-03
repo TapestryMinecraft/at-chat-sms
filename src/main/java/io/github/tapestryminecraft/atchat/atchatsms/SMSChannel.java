@@ -11,11 +11,13 @@ import org.spongepowered.api.text.channel.MessageReceiver;
 import io.github.tapestryminecraft.atchat.AtChatChannel;
 
 public class SMSChannel extends AtChatChannel{
+	private Player sender;
 	private String number;
 	
-	public SMSChannel(Player sender, String channelString) {
+	public SMSChannel(Player sender, String number) {
 		this.sender = sender;
-		this.number = channelString;
+		// TODO set number
+		this.number = number;
 	}
 
 	public Collection<MessageReceiver> getMembers() {
@@ -25,8 +27,13 @@ public class SMSChannel extends AtChatChannel{
 	}
 
 	@Override
-	protected String channelString() {
-		return this.number;
+	protected String getChannelString() {
+		return "sms " + this.number;
+	}
+
+	@Override
+	protected Player getSender() {
+		return this.sender;
 	}
 	
 	@Override
@@ -37,7 +44,7 @@ public class SMSChannel extends AtChatChannel{
 	
 	private void sendSMS(Text message) {
 		// TODO use Textbelt
-		System.out.println("ATCHAT SMS: sending txt...");
+		System.out.println("ATCHAT SMS: sending sms to " + this.number);
 		return;
 	}
 }
