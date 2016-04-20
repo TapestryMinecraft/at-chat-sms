@@ -4,9 +4,13 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.json.JSONObject;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.channel.MessageReceiver;
+
+import com.goebl.david.Response;
+import com.goebl.david.Webb;
 
 import io.github.tapestryminecraft.atchat.AtChatChannel;
 
@@ -43,8 +47,13 @@ public class SMSChannel extends AtChatChannel{
 	}
 	
 	private void sendSMS(Text message) {
-		// TODO use Textbelt
 		System.out.println("ATCHAT SMS: sending sms to " + this.number);
-		return;
+		Webb webb = Webb.create();
+		Response<JSONObject> response = webb
+			.post("http://textbelt.com/text")
+			.param("number", this.number)
+			.param("message", message.toPlain())
+			.asJsonObject();
+		System.out.println(response.toString());
 	}
 }

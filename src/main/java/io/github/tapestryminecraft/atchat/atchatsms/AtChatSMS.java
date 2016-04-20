@@ -7,6 +7,11 @@ import io.github.tapestryminecraft.atchat.AtChatChannelController;
 import io.github.tapestryminecraft.atchat.AtChatMessage;
 import io.github.tapestryminecraft.atchat.AtChatPlugin;
 
+/*
+ * TODO
+ * will `dependencies = "require-after:atchat"` work
+ * even though class extends AtChatPlugin?
+ */
 @Plugin(id = "atchatsms", name = "AtChatSMS", version = "0")
 public class AtChatSMS extends AtChatPlugin{
 	
